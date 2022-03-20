@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-  
+    <router-view></router-view>
+     <MainTabBar></MainTabBar>
   </div>
 </template>
 <script>
-
+import MainTabBar from './components/content/mainTabbar/MainTabBar'
 export default {
+ 
   name: "app",
   data() {
     return {
@@ -14,33 +16,10 @@ export default {
     };
   },
   components: {
-    // HelloWorld,
+    MainTabBar
   },
   methods: {
-    add() {
-      this.$store.commit("increment");
-    },
-    sdd() {
-      this.$store.commit("decrement");
-    },
-    add5(count) {
-      this.$store.commit("increment5", count);
-    },
-    add10(){
-      this.$store.commit('increment510')
-    },
-    listclick(){
-      const res = {id:5,name:'ximen',age:35}
-      this.$store.dispatch('listclicksa',res).then((res)=>{
-        console.log(res);
-      })
-    },
-    moderss(){
-      this.$store.commit('moders')
-    },
-gaibi(){
-  this.$store.dispatch('gaibia','里斯')
-}
+ 
   },
   // componts:{
   //   HelloWorld,
@@ -48,4 +27,5 @@ gaibi(){
 };
 </script>
 <style>
+  @import "assets/css/base.css";
 </style>
