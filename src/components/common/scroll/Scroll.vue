@@ -31,6 +31,7 @@
       // 1.创建BScroll对象
       this.scroll = new BScroll(this.$refs.wrapper, {
         click: true,
+        observeDOM:true,
         probeType: this.probeType,
         pullUpLoad: this.pullUpLoad
       })
@@ -45,6 +46,9 @@
       this.scroll.on('pullingUp', () => {
         this.$emit('pullingUp')
       })
+      // this.scroll.on('scrollend',()=>{
+      //   this.$emit('scrollend')
+      // })
     },
     methods: {
       scrollTo(x, y, time=300) {
