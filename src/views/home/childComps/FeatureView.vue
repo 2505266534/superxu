@@ -1,28 +1,19 @@
 <template>
-  <div>
-    <swiper>
-      <swiper-item v-for="(item,index) in banners" :key="index">
-        <a href="item.link">
-          <img :src="item.image" alt="" />
-        </a>
-      </swiper-item>
-    </swiper>
+  <div class="feature">
+    <a href="https://act.mogujie.com/zzlx67">
+      <img src="~assets/img/home/recommend_bg.jpg" alt="">
+    </a>
   </div>
 </template>
 
 <script>
- import {Swiper, SwiperItem} from 'components/common/swiper'
-export default {
-  name: "HomeSwiper",
-  props: {
-    banners: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  components: { Swiper, SwiperItem },
-};
+  export default {
+    name: "FeatureView"
+  }
 </script>
 
 <style scoped>
+  .feature img {
+    width: 100%;
+  }
 </style>
