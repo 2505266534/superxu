@@ -1,7 +1,11 @@
 <template>
   <div id="detail">
+
     <detail-nav-bar class="detail-nav" @navclick="navclick" ref="nav" />
+  
     <scroll  class="content" ref="scroll" :probeType="3" @scroll="scrolloit">
+     
+    
       <detail-swiper :top-images="topImages" />
       <detail-base-info :goods="goods" />
       <detail-shop-info ref="params" :shop="shop" />
@@ -11,7 +15,8 @@
      
     </scroll>
       <back-top @click.native="backClick" v-show="isShowBackTop" />
-    <Detailbottom/>
+       <detail-bottom @addclickh="addclickh" />
+   
   </div>
 </template>
 
@@ -22,14 +27,14 @@ import DetailBaseInfo from "./childComps/DetailBaseInfo";
 import DetailShopInfo from "./childComps/DetailShopInfo";
 import DetailGoodsInfo from "./childComps/DetailGoodsInfo";
 import DetailParamInfo from "./childComps/DetailParamInfo";
-import Detailbottom from "./childComps/Detailbottom";
+import DetailBottom from "./childComps/DetailBottom";
 
 import GoodList from "components/content/goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
 import BackTop from "components/content/backTop/BackTop";
 import { detailed, Goods, Shop, GoodsParam, recommend } from "network/detail";
 import { debounce, itemlinter } from "@/common/utils";
-
+import {mapActions} from 'vuex'
 export default {
   name: "Detail",
   components: {
@@ -41,7 +46,7 @@ export default {
     DetailParamInfo,
     Scroll,
     GoodList,
-    Detailbottom,
+    DetailBottom,
     BackTop
   },
   mixins: [itemlinter],
@@ -57,7 +62,9 @@ export default {
       offsetTop: "",
       recommends: [],
        isShowBackTop: false,
-       product:{}
+       product:{},
+       show:false,
+       message:''
     };
   },
   updated() {
@@ -121,17 +128,32 @@ export default {
   },
 
   methods: {
+   
+    ...mapActions({
+      addclick:'addclick'
+    }),
     backClick() {
       this.$refs.scroll.scrollTo(0, 0);
     },
-    addclick(){
+    addclickh(){
        const product = {}
        product.image = this.topImages[0]
-       product.title = this.goodsInfo.title;
-       product.desc = this.goodsInfo.desc;
-       product.price = this.goodsInfo.realPrice
-       product.iid = this.iid;
-   
+         product.title = this.goods.title;
+        product.desc = this.goods.desc;
+        product.price = this.goods.realPrice
+        product.iid = this.iid;
+      this.addclick(product).then(res=>{
+      //     this.show = true
+      //   this.message = res
+        
+      //  setTimeout(()=>{
+      //     this.show = false
+      //  },1000)
+        this.$toast.show(res,1000)
+     
+      })
+  
+      this.$store.dispatch('addclick',product)
       //  将商品添加到购物车
 
     },
@@ -183,4 +205,5 @@ export default {
 .content {
   height: calc(100% - 44px);
 }
+
 </style>

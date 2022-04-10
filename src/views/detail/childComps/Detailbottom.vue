@@ -37,8 +37,8 @@ export default {
     };
   },
   methods: {
-    addclick(event) {
-      this.$emit("addclick");
+    addclick() {
+          this.$emit('addclickh');
     },
   },
 };

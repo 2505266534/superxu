@@ -1,3 +1,5 @@
+
+
 export const  ITEMOUT = 'increment';
 export const  ITEMOUTS = 'increment510';
 export const  MAXD = 'listclicksa';
@@ -7,6 +9,14 @@ export default  {
     [ITEMOUT](state) {
       state.counter++
     },
+    addclicks(state,payload){
+     payload.count ++
+    },
+    addclickr(state,payload){
+      payload.checked = true
+      state.cartList.push(payload)
+    },
+    
     decrement(state) {
       state.counter--
     },

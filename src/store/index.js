@@ -9,6 +9,7 @@ Vue.use(Vuex)
 
 const state = {
   counter: 1000,
+  cartList:[],
   students: [
     { id: 1, name: 'lisi', age: 19 },
     { id: 2, name: 'lisan', age: 20 },

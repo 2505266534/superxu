@@ -22,5 +22,12 @@ export default {
     },
     maxage5(state,getters){
       return getters.maxage4.length
+    },
+    cartlength(state){
+      return state.cartList.length
+    },
+    cartList(state){
+   
+      return state.cartList
     }
   }
